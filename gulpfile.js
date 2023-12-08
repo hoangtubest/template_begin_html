@@ -10,7 +10,6 @@ import browserSync from "browser-sync";
 import { sync as rimraf } from "rimraf";
 import ssi from "gulp-ssi";
 import prettyHtml from "gulp-pretty-html";
-import pug from "gulp-pug";
 import htmlhint from "gulp-htmlhint";
 import gulpSass from "gulp-sass";
 import * as sass from "sass";
@@ -61,20 +60,6 @@ const html = () => {
     .pipe(gulp.dest(DIST_PATH));
 };
 
-const htmlPug = () => {
-  const option = {
-    pretty: true,
-  };
-  return gulp
-    .src(`${SRC_PATH}/pug/**/[^_]*.pug`)
-    .pipe(
-      plumber({
-        errorHandler: notify.onError("Error: <%= error.message %>"),
-      })
-    )
-    .pipe(pug(option))
-    .pipe(gulp.dest(DIST_PATH));
-};
 const validateHTML = () => {
   return gulp
     .src(`${DIST_PATH}/**/*.html`)
@@ -153,21 +138,22 @@ const browserReload = (done) => {
   done();
 };
 
-const sync = () => {
-  cpx.copy(`${DIST_PATH}/**/*.*`, PUBLIC_PATH, {
-    clean: true,
-    filter: (filePath) => !filePath.includes(".DS_Store"),
-  });
+const sync = (done) => {
+  cpx.copy(
+    `${DIST_PATH}/**/*.*`,
+    PUBLIC_PATH,
+    {
+      clean: true,
+      filter: (filePath) => !filePath.includes(".DS_Store"),
+    },
+    done
+  );
 };
 
 const watchFiles = (done) => {
-  // gulp.watch(
-  //   `${SRC_PATH}/html/**/*.html`,
-  //   gulp.series(html, validateHTML, browserReload)
-  // );
   gulp.watch(
-    `${SRC_PATH}/pug/**/*.{pug, html}`,
-    gulp.series(htmlPug, validateHTML, browserReload)
+    `${SRC_PATH}/html/**/*.html`,
+    gulp.series(html, validateHTML, browserReload)
   );
   gulp.watch(`${SRC_PATH}/scss/**/*.scss`, cssScss);
   gulp.watch(`${SRC_PATH}/static/**/*`, staticFiles);
@@ -181,8 +167,7 @@ const watchFiles = (done) => {
 
 const buildFiles = gulp.series(
   clean,
-  // gulp.parallel(html, cssScss, script),
-  gulp.parallel(htmlPug, cssScss, script),
+  gulp.parallel(html, cssScss, script),
   validateHTML
 );
 
@@ -194,7 +179,6 @@ const prod = gulp.series(buildFiles, staticFiles, minImageFiles, sync);
 export {
   minImageFiles,
   html,
-  htmlPug,
   validateHTML,
   cssScss,
   script,
