@@ -1,0 +1,14 @@
+@function per($design_width_psd) {
+  $per: percentage($design_width_psd / $DESIGN_WIDTH_PC);
+  @return #{$per};
+}
+
+@function vw($design_width_psd) {
+  $vw: calc($design-width-psd / $DESIGN-WIDTH-SP) * 100;
+  @return #{$vw}vw;
+}
+
+@function rem($design_px) {
+  $rem: calc($design_px / 10);
+  @return $rem+rem;
+}

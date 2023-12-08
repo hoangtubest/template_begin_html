@@ -1,0 +1,46 @@
+$COLOR_BASE: #000;
+$COLOR_MAIN: #2660AD;
+$COLOR_BLUE: #2660AD;
+$COLOR_GRAY: #ecf5ff;
+$COLOR_YELLOW: #fff048;
+$COLOR_ORANGE: #ef6b00;
+$COLOR_RED: #d71818;
+$COLOR_GREEN: #329a61;
+$COLOR_WHITE: #fff;
+$COLOR_BROWN: #6A3C1A;
+
+$DESIGN_WIDTH_PC: 1366;
+$CONTAINER_WIDTH: 1200;
+$DESIGN_WIDTH_SP: 375;
+$WIDTH_SP: 767px;
+$WIDTH_PC: 1440px;
+$WIDTH_TABLET: 1080px;
+$FZ_PC: 14;
+$FZ_SP: 13;
+$FONT_BASE: 10;
+$LEADING: 1.5;
+$OPACITY_HOVER: 0.75;
+$SHADOW_BASE: 0 4px 10px rgba(#000000, 0.14);
+
+// Z-index
+$Z_PAGETOP: 10;
+$Z_HDG: 101;
+$Z_HEADER: 100;
+$Z_GNAV: 99;
+$Z_LOADING: 1000;
+$TRANSITION_BASE: 0.5s cubic-bezier(0.66, 0, 0.34, 1);
+$TRANSITION_FADEIN: 1s cubic-bezier(0.66, 0, 0.34, 1);
+
+// Font
+$FONT_MINCHO: serif;
+$FONT_GOTHIC: "YuGothic",
+"游ゴシック",
+"Yu Gothic",
+"游ゴシック Medium",
+"Yu Gothic Medium",
+"ヒラギノ⾓ゴ Pro",
+"Hiragino Kaku Gothic Pro",
+"MS PGothic",
+sans-serif;
+$FONT_TITLE: $FONT_MINCHO;
+$FONT_EN: sans-serif;

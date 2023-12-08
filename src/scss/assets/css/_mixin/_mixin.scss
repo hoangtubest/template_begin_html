@@ -1,0 +1,296 @@
+@charset "utf-8";
+// CSS Document
+
+$color_base: #000;
+$color_main: #2660AD;
+$color_blue: #2660AD;
+
+$color_gray: #ecf5ff;
+$color_blue2: #0652a3;
+$color_yellow: #fff048;
+$color_orange: #ef6b00;
+$color_red: #d71818;
+$color_green: #329a61;
+$color_white: #fff;
+$color_brown: #6A3C1A;
+$design_width_pc: 1200;
+$container: 1200;
+$design_width_sp: 375;
+$sp: 767px;
+$pc: 1440px;
+$tb: 1080px;
+$fz_pc: 14;
+$fz_sp: 13;
+$baseFont: 10;
+$lh: 1.5;
+$opacity_hover: 0.75;
+$shadow: 0 4px 10px rgba(#000000, 0.14);
+
+// Z-index
+$z_Pagetop: 10;
+$z_Btn_Contact: 10;
+$z_Hbg: 101;
+$z_Header: 100;
+$z_Gnav: 99;
+$z_Loading: 1000;
+$transition-fadeIn: 1s cubic-bezier(0.66, 0, 0.34, 1);
+$transition: 0.5s cubic-bezier(0.66, 0, 0.34, 1);
+
+@font-face {
+   font-family: 'SFProText';
+   src: url('../fonts/SFProText-Bold.woff2') format('woff2'),
+      url('../fonts/SFProText-Bold.woff') format('woff');
+   font-weight: bold;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'SFProText';
+   src: url('../fonts/SFProText-Heavy.woff2') format('woff2'),
+      url('../fonts/SFProText-Heavy.woff') format('woff');
+   font-weight: 900;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'SFProText';
+   src: url('../fonts/SFProText-Light.woff2') format('woff2'),
+      url('../fonts/SFProText-Light.woff') format('woff');
+   font-weight: 300;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'SFProText';
+   src: url('../fonts/SFProText-Medium.woff2') format('woff2'),
+      url('../fonts/SFProText-Medium.woff') format('woff');
+   font-weight: 500;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'SFProText';
+   src: url('../fonts/SFProText-Semibold.woff2') format('woff2'),
+      url('../fonts/SFProText-Semibold.woff') format('woff');
+   font-weight: 600;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'SFProText';
+   src: url('../fonts/SFProText-Regular.woff2') format('woff2'),
+      url('../fonts/SFProText-Regular.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+}
+
+// Font
+$mincho: serif;
+$gothic: "YuGothic",
+"游ゴシック",
+"Yu Gothic",
+"游ゴシック Medium",
+"Yu Gothic Medium",
+"ヒラギノ⾓ゴ Pro",
+"Hiragino Kaku Gothic Pro",
+"MS PGothic",
+sans-serif;
+$font_ttl: $mincho;
+$font_en: "SFProText";
+
+$url : '../img/';
+
+@function per($design_width_psd) {
+   $per: percentage($design_width_psd/$design_width_pc);
+   @return #{$per};
+}
+
+@function vw($design_width_psd) {
+   $vw: $design_width_psd / $design_width_sp * 100;
+   @return #{$vw}vw;
+}
+
+@function rem($design_px) {
+   $rem: $design_px / 10;
+   @return $rem+rem;
+}
+
+@mixin fz($font-size, $line-height) {
+   font-size: calc($font-size / 10);
+   line-height: calc($line-height / $font-size);
+}
+
+// breakpoint -------------------------------------
+@mixin pc_lg {
+   @media screen and (min-width: ($tb + 1)) {
+      @content;
+   }
+}
+
+@mixin pc {
+   @media screen and (min-width: ($sp+1)) {
+      @content;
+   }
+}
+
+@mixin tb {
+   @media screen and (min-width: ($sp + 1)) and (max-width: $tb) {
+      @content;
+   }
+}
+
+@mixin sp {
+   @media screen and (max-width: $sp) {
+      @content;
+   }
+}
+
+@mixin clearfix() {
+
+   &::before,
+   &::after {
+      content: '';
+      display: block;
+   }
+
+   &::after {
+      clear: both;
+   }
+}
+
+@mixin nthLoad($n: 5) {
+   @include pc() {
+      @for $i from 0 through $n {
+         &:nth-child(#{$i+1}) {
+            animation-delay: 0.15s * $i !important;
+         }
+      }
+   }
+}
+
+// Margin, Padding
+@for $i from 0 through 20 {
+   .mt#{$i * 5} {
+      margin-top: 0.5rem * $i !important;
+   }
+
+   .mr#{$i * 5} {
+      margin-right: 0.5rem * $i !important;
+   }
+
+   .mb#{$i * 5} {
+      margin-bottom: 0.5rem * $i !important;
+   }
+
+   .ml#{$i * 5} {
+      margin-left: 0.5rem * $i !important;
+   }
+
+   .pt#{$i * 5} {
+      padding-top: 0.5rem * $i !important;
+   }
+
+   .pr#{$i * 5} {
+      padding-right: 0.5rem * $i !important;
+   }
+
+   .pb#{$i * 5} {
+      padding-bottom: 0.5rem * $i !important;
+   }
+
+   .pl#{$i * 5} {
+      padding-left: 0.5rem * $i !important;
+   }
+}
+
+@include pc {
+   @for $i from 0 through 20 {
+      .pc-mt#{$i * 5} {
+         margin-top: 0.5rem * $i !important;
+      }
+
+      .pc-mr#{$i * 5} {
+         margin-right: 0.5rem * $i !important;
+      }
+
+      .pc-mb#{$i * 5} {
+         margin-bottom: 0.5rem * $i !important;
+      }
+
+      .pc-ml#{$i * 5} {
+         margin-left: 0.5rem * $i !important;
+      }
+
+      .pc-pt#{$i * 5} {
+         padding-top: 0.5rem * $i !important;
+      }
+
+      .pc-pr#{$i * 5} {
+         padding-right: 0.5rem * $i !important;
+      }
+
+      .pc-pb#{$i * 5} {
+         padding-bottom: 0.5rem * $i !important;
+      }
+
+      .pc-pl#{$i * 5} {
+         padding-left: 0.5rem * $i !important;
+      }
+   }
+}
+
+@include sp {
+   @for $i from 0 through 20 {
+      .sp-mt#{$i * 5} {
+         margin-top: 0.5rem * $i !important;
+      }
+
+      .sp-mr#{$i * 5} {
+         margin-right: 0.5rem * $i !important;
+      }
+
+      .sp-mb#{$i * 5} {
+         margin-bottom: 0.5rem * $i !important;
+      }
+
+      .sp-ml#{$i * 5} {
+         margin-left: 0.5rem * $i !important;
+      }
+
+      .sp-pt#{$i * 5} {
+         padding-top: 0.5rem * $i !important;
+      }
+
+      .sp-pr#{$i * 5} {
+         padding-right: 0.5rem * $i !important;
+      }
+
+      .sp-pb#{$i * 5} {
+         padding-bottom: 0.5rem * $i !important;
+      }
+
+      .sp-pl#{$i * 5} {
+         padding-left: 0.5rem * $i !important;
+      }
+   }
+}
+
+@for $i from 0 through 100 {
+   .col-#{$i}p {
+      width: 1% * $i;
+   }
+}
+
+@include sp() {
+   @for $i from 0 through 100 {
+      .col-#{$i}p-sp {
+         width: 1% * $i;
+      }
+   }
+}

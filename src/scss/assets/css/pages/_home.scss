@@ -1,0 +1,25 @@
+.box-demo {
+  width: 100px;
+  height: 100px;
+
+  @include pc {
+    background: red;
+  }
+
+  @include sp {
+    background: blue;
+  }
+}
+
+.box-demo2 {
+  width: 100px;
+  height: 100px;
+
+  &.is-pc {
+    background: red;
+  }
+
+  &.is-sp {
+    background: blue;
+  }
+}

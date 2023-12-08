@@ -1,0 +1,53 @@
+// breakpoint -------------//
+@mixin wide() {
+   @media screen and (min-width: ($WIDTH_TABLET+1)) {
+      @content;
+   }
+}
+
+@mixin pc() {
+   @media screen and (min-width: ($WIDTH_SP+1)) {
+      @content;
+   }
+}
+
+@mixin tb() {
+   @media screen and (min-width: ($WIDTH_SP+1)) and (max-width: $WIDTH_TABLET) {
+      @content;
+   }
+}
+
+@mixin sp() {
+   @media screen and (max-width: $WIDTH_SP) {
+      @content;
+   }
+}
+
+@mixin clearfix() {
+
+   &::before,
+   &::after {
+      content: '';
+      display: block;
+   }
+
+   &::after {
+      clear: both;
+   }
+}
+
+@mixin nthLoad($n: 5) {
+   @include pc() {
+      @for $i from 0 through $n {
+         &:nth-child(#{$i+1}) {
+            animation-delay: 0.15s * $i !important;
+         }
+      }
+   }
+}
+
+@mixin fz($font-size, $line-height) {
+   font-size: calc($font-size / 10)+rem;
+   line-height: calc($line-height / $font-size);
+   height: rem(100);
+}

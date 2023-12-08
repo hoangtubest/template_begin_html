@@ -1,0 +1,4 @@
+.header {
+  @include fz(20, 30);
+  height: rem(100);
+}

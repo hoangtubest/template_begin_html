@@ -1,0 +1,9 @@
+node_modules
+dist
+_dist
+preview
+_preview
+htdocs
+_htdocs
+ftp/config.json
+.history
