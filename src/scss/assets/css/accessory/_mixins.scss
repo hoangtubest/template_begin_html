@@ -49,5 +49,4 @@
 @mixin fz($font-size, $line-height) {
    font-size: calc($font-size / 10)+rem;
    line-height: calc($line-height / $font-size);
-   height: rem(100);
 }
